@@ -1,0 +1,39 @@
+﻿form div {
+    margin: 10px auto;
+}
+
+.sub input {
+    background: #e73f3f;
+}
+
+input {
+    outline: none;
+    margin-top: 10px;
+    width: 180px;
+}
+
+input#sub {
+    color: white;
+    background: red;
+    width: 182px;
+    margin-left: 47px;
+    border: 1px solid #f2f2f2;
+}
+
+.formdiv {
+    width: 300px;
+    height: 330px;
+    background: #e9ebed;
+    margin: 0 auto;
+    box-shadow: 2px 2px 10px #909090;
+}
+
+.to_regist {
+    margin-left: 75px;
+}
+
+.tag {
+    background: #979a9d;
+    color: aliceblue;
+    padding: 10px;
+}

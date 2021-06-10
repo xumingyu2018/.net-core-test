@@ -1,0 +1,108 @@
+﻿@model FileDemo.Models.DocumentListModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+
+    <!-- 下拉框 -->
+    <div class="dropdown float-left col-sm-3">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-expanded="false">
+            @Model.TypeName
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            @foreach (var item in @Model.TypeList)
+            {
+                <a class="dropdown-item" asp-action="GetByType" asp-route-typeId="@item.Id">@item.Type</a>
+            }
+        </div>
+    </div>
+    <div class="right" style=" float: left; ">
+        <!-- 导航栏 -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="index">文档分类</a></li>
+                @if (@Model.TypeId != 0)
+                {
+                    <li class="breadcrumb-item active" aria-current="page">@Model.TypeName</li>
+                }
+            </ol>
+        </nav>
+
+        @* 内容 *@
+        <div class="content" style="width:500px">
+            @if (@Model.DetailList.Count > 0)
+            {
+                <ul class="list-group">
+                    @foreach (var item in @Model.DetailList)
+                    {
+                        <li class="list-group-item">
+                            <div>
+                                <h1>@item.DocName</h1>
+                                <p>@item.DocDesc</p>
+                                <a asp-action="Download" asp-route-Id="@item.Id">下载</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+
+
+        <!-- 分页 -->
+        <div>
+            @Html.HiddenFor(model=> model.TypeId)
+            <input type="hidden" asp-for="TypeId" />
+            <nav aria-label="...">
+                <ul class="pagination">
+                    @if (0 == @Model.PageNum)
+                    {
+                        <li class="page-item disabled">
+                            <a class="page-link" aria-disabled="true">上一页</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="GetByType" asp-route-typeId="@Model.TypeId"
+                            asp-route-page="@(Model.PageNum-1)">上一页</a>
+                        </li>
+                    }
+                    @for (int i = 0; i < @Model.PageSize; i++)
+                    {
+                        if (i == @Model.PageNum)
+                        {
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" asp-action="GetByType" asp-route-typeId="@Model.TypeId"
+                            asp-route-page="@i">@(i+1)</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-action="GetByType" asp-route-typeId="@Model.TypeId"
+                            asp-route-page="@i">@(i+1)</a>
+                            </li>
+                        }
+
+                    }
+                    @if (Model.PageSize - 1 == @Model.PageNum)
+                    {
+                        <li class="page-item disabled">
+                            <a class="page-link" aria-disabled="true">下一页</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="GetByType" asp-route-typeId="@Model.TypeId"
+                            asp-route-page="@(Model.PageNum+1)">下一页</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="text-align: center"> 
+    <form action="/Home/Login" method="POST">
+        
+        <h1 style="margin-left:44px">登录界面</h1>
+        账号：<input type="text" name="username"><br>
+        密码：<input type="password" name="password"><br>
+        <p style="color:red">@ViewData["msg"]</p>
+        <button type="submit" style="margin-left:49px">登录</button><a href="/Home/Register">注册账号</a>
+    </form>    
+</div>

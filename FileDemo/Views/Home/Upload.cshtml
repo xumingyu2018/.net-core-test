@@ -1,0 +1,38 @@
+﻿@model FileDemo.Models.UploadModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<div>
+
+    @* 下拉框 *@
+    <select id="sel" class="form-control float-left col-sm-3" onchange="type_change()">
+        <option>
+            @Model.TypeName
+        </option>
+        @foreach (var item in @Model.TypeList)
+        {
+            <option id="@item.Id">@item.Type</option>
+        }
+    </select>
+    @* 上传类容 *@
+    <div class=" col-10 float-left col-sm-6">
+        <form asp-controller="Home" asp-action="Upload" enctype="multipart/form-data" method="post">
+            <div>
+                <textarea asp-for="DocDesc" class="form-control" rows="3" placeholder="请输入简单的描述"></textarea>
+            </div>
+
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="hidden" asp-for="TypeId" />
+                    <input type="hidden" asp-for="TypeName" />
+                    <input onchange="showFilename(this.files[0])" class="custom-file-input" type="file" asp-for="FormFile" id="inputGroupFile" />
+                    <label id="filename_label" class="custom-file-label"><span asp-validation-for="FormFile" class="text-primary"></span></label>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">上传</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

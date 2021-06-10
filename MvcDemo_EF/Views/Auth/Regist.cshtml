@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "注册页";
+}
+
+<div class="text-center">
+    <div class="formdiv">
+        <h1 class="display-4 tag">注册</h1>
+        <form id="loginform" asp-controller="Auth" asp-action="Regist" method="POST">
+            <div class="inputwords">
+                <p class="msg">📃</p>
+                <div>账号：<input name="Account" type="text" value="12345678" /></div>
+                <div>密码：<input name="Password" type="password" /></div>
+            </div>
+            <div>
+                <input type="submit" value="注册" id="sub">
+            </div>
+        </form>
+        <div class="to_registe">
+            <p>我有账号？ <a asp-controller="Auth" asp-action="Index">跳转到登录页</a>.</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,133 @@
+@model IEnumerable<EFcoreDemo.Models.User>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>主页</h1>
+
+<p><a asp-action="Insert">添加用户</a></p>
+
+<table id="MyTable" class="table border">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Graduated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <div class="hide_text">
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </div>
+               
+                <div class="hide_input" style="display: none; float:left;" >
+                    <input class="input" disabled type="text" value="@Html.DisplayFor(modelItem => item.UserID)" style="width:80px">   
+                </div>
+            </td>
+            <td>
+                <div class="hide_text">  
+                     @Html.DisplayFor(modelItem => item.UserName)
+                </div>
+                <div class="hide_input" style="display: none; float:left;" >
+                    <input class="input" type="text" value="@Html.DisplayFor(modelItem => item.UserName)" style="width:80px">   
+                </div>
+            </td>
+            <td>
+                <div class="hide_text">  
+                    @Html.DisplayFor(modelItem => item.Password)
+                </div>
+                
+                <div class="hide_input" style="display: none; float:left;" >
+                    <input class="input" type="text" value="@Html.DisplayFor(modelItem => item.Password)" style="width:80px">
+                </div>
+            </td>
+            <td>
+                <div class="hide_text">  
+                      @Html.DisplayFor(modelItem => item.Sex)
+                </div>
+               
+                <div class="hide_input" style="display: none; float:left;" >
+                    <input class="input" type="text" value="@Html.DisplayFor(modelItem => item.Sex)" style="width:80px">
+                </div>
+            </td>
+            <td>
+                <div class="hide_text">  
+                      @Html.DisplayFor(modelItem => item.Age)
+                </div>
+               
+                <div class="hide_input" style="display: none; float:left;" >
+                    <input class="input" type="text" value="@Html.DisplayFor(modelItem => item.Age)" style="width:80px">
+                </div>
+            </td>
+            <td>
+                <div class="hide_text">  
+                      @Html.DisplayFor(modelItem => item.Graduated)
+                </div>
+               
+                <div class="hide_input" style="display: none; float:left;" >
+                    <input class="input" type="text" value="@Html.DisplayFor(modelItem => item.Graduated)" style="width:80px">
+                </div>
+        
+            </td>
+            <td>
+                <div class="hide_text">  
+                      @Html.DisplayFor(modelItem => item.Address)
+                </div>
+               
+                <div class="hide_input" style="display: none; float:left;" >
+                    <input class="input" type="text" value="@Html.DisplayFor(modelItem => item.Address)" style="width:80px">
+                </div>
+                
+            </td>
+            <td>
+                 <div class="hide_text">  
+                      @Html.DisplayFor(modelItem => item.Phone)
+                </div>
+               
+                <div class="hide_input" style="display: none; float:left;" >
+                    <input class="input" type="text" value="@Html.DisplayFor(modelItem => item.Phone)" style="width:80px">
+                </div>
+               
+            </td>
+            <td>
+                <a class="btn btn-warning edit" >edit</a>
+                <a class="btn btn-warning save" style="display: none">save</a>
+                
+                <a asp-action="Details" asp-route-id="@item.UserID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p><a href="/User/Logout">退出</a></p>
+
+
+
